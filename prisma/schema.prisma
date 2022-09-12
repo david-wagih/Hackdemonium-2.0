@@ -19,6 +19,8 @@ model User {
   goals      Goal[]
   GroupGoals groupGoals[] @relation("user")
   FriendGroupGoals groupGoals[] @relation("friend")
+  Friends   Friends[]   @relation("user")
+  FriendFriends Friends[]   @relation("friend")
 }
 
 model Goal {
@@ -46,6 +48,14 @@ model groupGoals {
   friend    User @relation(fields: [friend_id], references: [id] , name: "friend")
 
   @@id([goal_id, user_id, friend_id])
+}
+
+model Friends { 
+  user_id    Int
+  friend_id  Int
+  user       User         @relation(fields: [user_id], references: [id] , name: "user")
+  friend     User         @relation(fields: [friend_id], references: [id], name: "friend")
+  @@id([user_id, friend_id])
 }
 
 model Tag { 
