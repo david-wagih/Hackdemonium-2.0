@@ -13,6 +13,9 @@ datasource db {
 model User {
   id               Int          @id @default(autoincrement())
   email            String       @unique
+  emailVerified    Boolean      @default(false)
+  phone            String       @unique
+  phoneVerified    Boolean      @default(false)
   username         String       @unique
   password         String
   goals            Goal[]
@@ -20,14 +23,6 @@ model User {
   FriendGroupGoals groupGoals[] @relation("friend")
   Friends          Friends[]    @relation("user")
   FriendFriends    Friends[]    @relation("friend")
-}
-
-model UserPhone {
-  user_id    Int
-  phone      String  @unique
-  Isverified Boolean @default(false)
-
-  @@id([user_id, phone])
 }
 
 model Goal {
