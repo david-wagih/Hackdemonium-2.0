@@ -9,3 +9,47 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id         Int          @id @default(autoincrement())
+  email      String       @unique
+  phone      String       @unique
+  username   String       @unique
+  password   String
+  goals      Goal[]
+  GroupGoals groupGoals[] @relation("user")
+  FriendGroupGoals groupGoals[] @relation("friend")
+}
+
+model Goal {
+  id         Int          @id @default(autoincrement())
+  title      String
+  tag_id     Int
+  minutes    Int
+  hours      Int
+  days       Int
+  weeks      Int
+  months     Int
+  years      Int
+  user_id    Int
+  user       User         @relation(fields: [user_id], references: [id])
+  tag        Tag          @relation(fields: [tag_id], references: [id])
+  groupGoals groupGoals[]
+}
+
+model groupGoals {
+  goal_id   Int
+  user_id   Int
+  friend_id Int
+  goal      Goal @relation(fields: [goal_id], references: [id])
+  user      User @relation(fields: [user_id], references: [id] , name: "user")
+  friend    User @relation(fields: [friend_id], references: [id] , name: "friend")
+
+  @@id([goal_id, user_id, friend_id])
+}
+
+model Tag { 
+  id    Int    @id @default(autoincrement())
+  title String
+  goals Goal[]
+}
