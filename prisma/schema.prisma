@@ -11,16 +11,23 @@ datasource db {
 }
 
 model User {
-  id         Int          @id @default(autoincrement())
-  email      String       @unique
-  phone      String       @unique
-  username   String       @unique
-  password   String
-  goals      Goal[]
-  GroupGoals groupGoals[] @relation("user")
+  id               Int          @id @default(autoincrement())
+  email            String       @unique
+  username         String       @unique
+  password         String
+  goals            Goal[]
+  GroupGoals       groupGoals[] @relation("user")
   FriendGroupGoals groupGoals[] @relation("friend")
-  Friends   Friends[]   @relation("user")
-  FriendFriends Friends[]   @relation("friend")
+  Friends          Friends[]    @relation("user")
+  FriendFriends    Friends[]    @relation("friend")
+}
+
+model UserPhone {
+  user_id    Int
+  phone      String  @unique
+  Isverified Boolean @default(false)
+
+  @@id([user_id, phone])
 }
 
 model Goal {
@@ -44,21 +51,22 @@ model groupGoals {
   user_id   Int
   friend_id Int
   goal      Goal @relation(fields: [goal_id], references: [id])
-  user      User @relation(fields: [user_id], references: [id] , name: "user")
-  friend    User @relation(fields: [friend_id], references: [id] , name: "friend")
+  user      User @relation(fields: [user_id], references: [id], name: "user")
+  friend    User @relation(fields: [friend_id], references: [id], name: "friend")
 
   @@id([goal_id, user_id, friend_id])
 }
 
-model Friends { 
-  user_id    Int
-  friend_id  Int
-  user       User         @relation(fields: [user_id], references: [id] , name: "user")
-  friend     User         @relation(fields: [friend_id], references: [id], name: "friend")
+model Friends {
+  user_id   Int
+  friend_id Int
+  user      User @relation(fields: [user_id], references: [id], name: "user")
+  friend    User @relation(fields: [friend_id], references: [id], name: "friend")
+
   @@id([user_id, friend_id])
 }
 
-model Tag { 
+model Tag {
   id    Int    @id @default(autoincrement())
   title String
   goals Goal[]
