@@ -57,6 +57,5 @@ const login = async (
     return null;
   }
 };
-const getUser = async (req: NextApiRequest, res: NextApiResponse) => {};
 
-export { register, login, getUser };
+export { register, login };
