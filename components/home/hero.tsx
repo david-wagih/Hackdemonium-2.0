@@ -2,6 +2,7 @@ import React from "react";
 import { Flex, Text, Button, Box } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
+import HeroImage from "../../public/Hero-image.png";
 
 export default function hero() {
   return (
@@ -46,12 +47,7 @@ export default function hero() {
         </Link>
       </Flex>
       <Flex justifyContent={"center"} mt={"54px"} mb={"310px"}>
-        <Image
-          alt=""
-          width={"1305px"}
-          height={"806px"}
-          src={"/Hero-image.png"}
-        />
+        <Image alt="" width={"1305px"} height={"806px"} src={HeroImage} />
       </Flex>
     </>
   );
