@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Flex, Box, Button, Text, Spacer, VStack } from "@chakra-ui/react";
 import Link from "next/link";
 import Image from "next/image";
+import { useCookies } from "react-cookie";
 
-export default function profile() {
+export default function Profile(props: any) {
+  const userData = props.user;
+
   return (
     <>
       <Flex alignItems={"center"} p={"30px 44px"}>
@@ -14,7 +17,7 @@ export default function profile() {
           <Link href={"/dashboard"}>
             <Image
               src={"/Arrow.svg"}
-              alt='logo'
+              alt="logo"
               width={"64px"}
               height={"64px"}
               className={"Logo"}
@@ -25,7 +28,7 @@ export default function profile() {
           <Text
             fontWeight={"500"}
             fontSize={"24px"}
-            className='underline'
+            className="underline"
             cursor={"pointer"}
           >
             Profile
@@ -55,12 +58,25 @@ export default function profile() {
           Account Information
         </Text>
         <VStack gap={"35px"} pl={"40px"} mt={"45px"} alignItems={"flex-start"}>
-          <Text>Email: [email]</Text>
-          <Text>Phone: [Phone]</Text>
-          <Text>Goal: [number of Goals]</Text>
-          <Text>Badges: [Number of badges]</Text>
+          <Text>Email: {userData!.email}</Text>
+          <Text>Phone: {userData!.phone}</Text>
+          <Text>Number of Goals: {userData!.goals.length}</Text>
+          <Text>Badges: {userData!.badges.length}</Text>
         </VStack>
       </Box>
     </>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  const id = context.query.id;
+  const user = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST}/api/getUser?id=${id}`
+  );
+  const userJson = await user.json();
+  return {
+    props: {
+      user: userJson,
+    },
+  };
 }

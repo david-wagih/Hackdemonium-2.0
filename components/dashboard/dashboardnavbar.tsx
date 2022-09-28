@@ -67,7 +67,7 @@ export default function DashboardNavBar() {
         </Link>
         <Box mr={"75px"}></Box>
         <Flex gap={"75px"} alignItems={"center"}>
-          <Link href={"/profile"}>
+          <Link href={`/${cookies.userId}`}>
             <Text
               fontWeight={"500"}
               fontSize={"18px"}
@@ -198,6 +198,9 @@ export default function DashboardNavBar() {
                 fontSize={"18px"}
                 className="underline"
                 cursor={"pointer"}
+                onClick={() => {
+                  removeCookie("userId");
+                }}
               >
                 Logout
               </Text>

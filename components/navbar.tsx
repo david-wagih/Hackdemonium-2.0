@@ -3,15 +3,18 @@ import React from "react";
 import { Flex, Text, Button, Box, Spacer } from "@chakra-ui/react";
 import Link from "next/link";
 import Image from "next/image";
+import { useCookies } from "react-cookie";
 
-export default function navbar() {
+export default function NavBar() {
+  const [cookies, setCookie, removeCookie] = useCookies(["userId"]);
+
   return (
     <>
       <Flex alignItems={"center"} px={"50px"} py={"24px"}>
         <Link href={"/"}>
           <Image
             src={"/Logo.png"}
-            alt='logo'
+            alt="logo"
             width={"227px"}
             height={"41px"}
             className={"Logo"}
@@ -19,21 +22,26 @@ export default function navbar() {
         </Link>
         <Spacer />
         <Flex gap={"75px"}>
-          <Link href={"/dashboard"}>
-            <Text
-              className='underline'
-              fontWeight={"500"}
-              fontSize={"18px"}
-              cursor={"pointer"}
-            >
-              Dashboard
-            </Text>
-          </Link>
+          {cookies.userId ? (
+            <Link href={"/dashboard"}>
+              <Text
+                className="underline"
+                fontWeight={"500"}
+                fontSize={"18px"}
+                cursor={"pointer"}
+              >
+                Dashboard
+              </Text>
+            </Link>
+          ) : (
+            <></>
+          )}
+
           <Link href={"#features"}>
             <Text
               fontWeight={"500"}
               fontSize={"18px"}
-              className='underline'
+              className="underline"
               cursor={"pointer"}
             >
               Features
@@ -43,7 +51,7 @@ export default function navbar() {
             <Text
               fontWeight={"500"}
               fontSize={"18px"}
-              className='underline'
+              className="underline"
               cursor={"pointer"}
             >
               About
@@ -53,7 +61,7 @@ export default function navbar() {
             <Text
               fontWeight={"500"}
               fontSize={"18px"}
-              className='underline'
+              className="underline"
               cursor={"pointer"}
             >
               Team
@@ -62,25 +70,56 @@ export default function navbar() {
         </Flex>
         <Spacer />
         <Flex gap={"25px"}>
-          <Link href={"/login"}>
-            <Button
-              transition={"all 0.2s ease-in-out"}
-              bgColor={"transparent"}
-              _hover={{ bgColor: "rgba(186, 186, 186, 0.574)" }}
+          {cookies.userId ? (
+            <Link href={`/${cookies.userId}`}>
+              <Button
+                bg={"#F2F2F2"}
+                color={"#000000"}
+                fontWeight={"500"}
+                fontSize={"18px"}
+                _hover={{ bg: "#F2F2F2" }}
+                _active={{ bg: "#F2F2F2" }}
+                _focus={{ bg: "#F2F2F2" }}
+              >
+                Profile
+              </Button>
+            </Link>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "25px",
+              }}
             >
-              Sign in
-            </Button>
-          </Link>
-          <Link href={"/sign"}>
-            <Button
-              transition={"all 0.2s ease-in-out"}
-              bgColor={"#FBE134"}
-              color={"secondary"}
-              _hover={{ bgColor: "#FBD134" }}
-            >
-              Sign up
-            </Button>
-          </Link>
+              <Link href={"/login"}>
+                <Button
+                  bg={"#F2F2F2"}
+                  color={"#000000"}
+                  fontWeight={"500"}
+                  fontSize={"18px"}
+                  _hover={{ bg: "#F2F2F2" }}
+                  _active={{ bg: "#F2F2F2" }}
+                  _focus={{ bg: "#F2F2F2" }}
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link href={"/sign"}>
+                <Button
+                  bg={"#F2F2F2"}
+                  color={"#000000"}
+                  fontWeight={"500"}
+                  fontSize={"18px"}
+                  _hover={{ bg: "#F2F2F2" }}
+                  _active={{ bg: "#F2F2F2" }}
+                  _focus={{ bg: "#F2F2F2" }}
+                >
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          )}
         </Flex>
       </Flex>
     </>

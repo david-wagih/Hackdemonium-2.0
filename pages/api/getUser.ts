@@ -2,11 +2,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../lib/prisma";
 import { getUserModel } from "../../models/User";
 
-// http://localhost:3000/api/getUser
+// http://localhost:3000/api/getUser?id=
 
 const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const id = req.body.id ? req.body.id : null;
+    const id = Number(req.query.id);
     let userModel: getUserModel;
     const userInfo = await prisma.user.findUnique({
       where: {
@@ -18,12 +18,9 @@ const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
         user_id: id,
       },
     });
-    const userBadges = await prisma.friends.findMany({
+    const userBadges = await prisma.badge.findMany({
       where: {
         user_id: id,
-      },
-      select: {
-        friend_id: true,
       },
     });
     userModel = {

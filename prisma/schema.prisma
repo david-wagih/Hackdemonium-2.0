@@ -11,25 +11,27 @@ datasource db {
 }
 
 model User {
-  id               Int          @id @default(autoincrement())
-  email            String       @unique
-  phone            String       @unique
-  username         String       @unique
-  password         String
-  goals            Goal[]
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  phone    String  @unique
+  username String  @unique
+  password String
+  goals    Goal[]
+  Badge    Badge[]
 }
 
 model Goal {
-  id         Int          @id @default(autoincrement())
-  title      String
-  category   String
-  days       Int
-  user_id    Int
-  user       User         @relation(fields: [user_id], references: [id])
+  id       Int    @id @default(autoincrement())
+  title    String
+  category String
+  days     Int
+  user_id  Int
+  user     User   @relation(fields: [user_id], references: [id])
 }
 
-
-
-
-
-
+model Badge {
+  id      Int    @id @default(autoincrement())
+  title   String
+  user_id Int
+  user    User   @relation(fields: [user_id], references: [id])
+}
