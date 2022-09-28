@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Text, Divider, Input, VStack } from "@chakra-ui/react";
 import Navbar from "../components/navbar";
+import axios from "../utils/axios";
+import { useRouter } from "next/router";
+import { AppProps } from "next/dist/shared/lib/router/router";
 
-export default function sign() {
+// @ts-ignore
+export default function SignUp(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [phone, setPhone] = useState("");
+  const router = useRouter();
+
+  const handleRegister = async (e: any) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    } else {
+      const response = await axios({
+        method: "post",
+        url: "/api/register",
+        data: {
+          email: email,
+          password: password,
+          username: username,
+          phone: phone,
+        },
+      });
+      if (response.status === 200) {
+        alert("Registration successful");
+        router.push("/login");
+      } else {
+        alert("Registration failed");
+      }
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -12,12 +48,40 @@ export default function sign() {
         </Text>
         <Divider w={"120px"} />
         <VStack gap={"25px"} py={"50px"}>
-          <Input w={"400px"} placeholder='Email' variant={"flushed"} />
-          <Input w={"400px"} placeholder='Password' variant={"flushed"} />
           <Input
             w={"400px"}
-            placeholder=' Confirm Password'
+            placeholder="Email"
             variant={"flushed"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            w={"400px"}
+            placeholder="username"
+            variant={"flushed"}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            w={"400px"}
+            placeholder="Phone"
+            variant={"flushed"}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+          <Input
+            w={"400px"}
+            placeholder="Password"
+            variant={"flushed"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Input
+            w={"400px"}
+            placeholder=" Confirm Password"
+            variant={"flushed"}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </VStack>
         <Button
@@ -32,6 +96,7 @@ export default function sign() {
           }}
           w={"200px"}
           type={"submit"}
+          onClick={handleRegister}
         >
           Sign Up
         </Button>
