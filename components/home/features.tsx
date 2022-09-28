@@ -19,7 +19,12 @@ export default function features() {
         </Text>
       </Flex>
       <Flex mt={"100px"} mb={"400px"} justifyContent={"center"}>
-        <Image width={"1096px"} height={"272px"} src={"/FeatureGridList.png"} />
+        <Image
+          alt=""
+          width={"1096px"}
+          height={"272px"}
+          src={"/FeatureGridList.png"}
+        />
       </Flex>
     </>
   );

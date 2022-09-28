@@ -19,7 +19,12 @@ export default function team() {
         </Text>
       </Flex>
       <Flex mt={"100px"} mb={"200px"} justifyContent={"center"}>
-        <Image width={"1088px"} height={"356px"} src={"/Group 957.png"} />
+        <Image
+          alt=""
+          width={"1088px"}
+          height={"356px"}
+          src={"/Group 957.png"}
+        />
       </Flex>
     </>
   );

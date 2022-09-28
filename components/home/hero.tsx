@@ -46,7 +46,12 @@ export default function hero() {
         </Link>
       </Flex>
       <Flex justifyContent={"center"} mt={"54px"} mb={"310px"}>
-        <Image width={"1305px"} height={"806px"} src={"/Hero-image.png"} />
+        <Image
+          alt=""
+          width={"1305px"}
+          height={"806px"}
+          src={"/Hero-image.png"}
+        />
       </Flex>
     </>
   );

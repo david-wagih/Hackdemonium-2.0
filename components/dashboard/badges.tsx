@@ -20,6 +20,7 @@ export default function badges() {
             alignItems={"center"}
           >
             <Image
+              alt=""
               width={"57px"}
               height={"72px"}
               src={"/casual-life-3d-gold-trophy-in-air-1 2.png"}
