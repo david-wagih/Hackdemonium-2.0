@@ -3,6 +3,7 @@ import { Button, Text, Divider, Input, VStack } from "@chakra-ui/react";
 import Navbar from "../components/navbar";
 import axios from "../utils/axios";
 import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
 
 // @ts-ignore
 export default function Login(props) {
@@ -10,25 +11,32 @@ export default function Login(props) {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const router = useRouter();
+  const [cookies, setCookie, removeCookie] = useCookies(["userId"]);
 
   const handleLogin = async (e: any) => {
-    e.preventDefault();
-    const response = await axios({
-      method: "post",
-      url: "/api/login",
-      data: {
-        email: email,
-        phone: phone,
-        password: password,
-      },
-    });
-    if (response.status === 200) {
-      alert("Login successful");
-      router.push("/dashboard");
-    } else {
-      alert("Login failed");
+    try {
+      e.preventDefault();
+      const response = await axios({
+        method: "post",
+        url: "/api/login",
+        data: {
+          email: email,
+          phone: phone,
+          password: password,
+        },
+      });
+      if (response.status === 200) {
+        alert("Login successful");
+        setCookie("userId", response.data.id);
+        router.push("/dashboard");
+      } else {
+        alert("Login failed");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
+
   return (
     <>
       <Navbar />

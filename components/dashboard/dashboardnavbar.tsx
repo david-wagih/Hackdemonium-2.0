@@ -23,8 +23,9 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import Image from "next/image";
+import useCookies from "react-cookie/cjs/useCookies";
 
-export default function dashboardnavbar() {
+export default function DashboardNavBar() {
   const [valueRadio, setValueRadio] = React.useState("1");
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
@@ -41,11 +42,12 @@ export default function dashboardnavbar() {
 
   const [value, setValue] = React.useState("");
   const handleChange = (event: any) => setValue(event.target.value);
+  const [cookies, setCookie, removeCookie] = useCookies(["userId"]);
 
   const OverlayOne = () => (
     <ModalOverlay
-      bg='rgba(0, 0, 0, 0.5)'
-      backdropFilter='blur(10px) hue-rotate(90deg)'
+      bg="rgba(0, 0, 0, 0.5)"
+      backdropFilter="blur(10px) hue-rotate(90deg)"
     />
   );
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -57,7 +59,7 @@ export default function dashboardnavbar() {
         <Link href={"/"}>
           <Image
             src={"/Logo.png"}
-            alt='logo'
+            alt="logo"
             width={"227px"}
             height={"41px"}
             className={"Logo"}
@@ -69,7 +71,7 @@ export default function dashboardnavbar() {
             <Text
               fontWeight={"500"}
               fontSize={"18px"}
-              className='underline'
+              className="underline"
               cursor={"pointer"}
             >
               Profile
@@ -95,7 +97,7 @@ export default function dashboardnavbar() {
               <ModalHeader>
                 <Image
                   src={"/Logo.png"}
-                  alt='logo'
+                  alt="logo"
                   width={"227px"}
                   height={"41px"}
                   className={"Logo"}
@@ -113,13 +115,13 @@ export default function dashboardnavbar() {
                   <Input
                     value={value}
                     onChange={handleChange}
-                    variant='flushed'
-                    placeholder='Goal'
+                    variant="flushed"
+                    placeholder="Goal"
                   />
                 </Box>
                 <Box textAlign={"center"}>
                   <Text>Time</Text>
-                  <HStack maxW='320px'>
+                  <HStack maxW="320px">
                     <Button
                       bgColor={"primary"}
                       color={"black"}
@@ -145,12 +147,12 @@ export default function dashboardnavbar() {
                 </Box>
                 <Box>
                   <Text>Type of Goal</Text>
-                  <Select placeholder='Category' w={"400"}>
-                    <option value='option1'>Physical</option>
-                    <option value='option2'>Mental</option>
-                    <option value='option3'>Academic</option>
-                    <option value='option4'>Financial</option>
-                    <option value='option5'>Social</option>
+                  <Select color={"orange"} placeholder="Category" w={"400"}>
+                    <option value="option1">Physical</option>
+                    <option value="option2">Mental</option>
+                    <option value="option3">Academic</option>
+                    <option value="option4">Financial</option>
+                    <option value="option5">Social</option>
                   </Select>
                 </Box>
                 <RadioGroup
@@ -160,10 +162,10 @@ export default function dashboardnavbar() {
                   textAlign={"center"}
                 >
                   <Text>Notification Frequency</Text>
-                  <Stack direction='row'>
-                    <Radio value='1'>Daily</Radio>
-                    <Radio value='2'>Weekly</Radio>
-                    <Radio value='3'>Bi-Weekly</Radio>
+                  <Stack direction="row">
+                    <Radio value="1">Daily</Radio>
+                    <Radio value="2">Weekly</Radio>
+                    <Radio value="3">Bi-Weekly</Radio>
                   </Stack>
                 </RadioGroup>
               </ModalBody>
@@ -188,7 +190,31 @@ export default function dashboardnavbar() {
           </Modal>
         </Flex>
         <Spacer />
-        <Flex>Username</Flex>
+        <Flex>
+          {cookies.userId ? (
+            <Link href={"/"}>
+              <Text
+                fontWeight={"500"}
+                fontSize={"18px"}
+                className="underline"
+                cursor={"pointer"}
+              >
+                Logout
+              </Text>
+            </Link>
+          ) : (
+            <Link href={"/login"}>
+              <Text
+                fontWeight={"500"}
+                fontSize={"18px"}
+                className="underline"
+                cursor={"pointer"}
+              >
+                Login
+              </Text>
+            </Link>
+          )}
+        </Flex>
       </Flex>
     </>
   );

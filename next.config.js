@@ -5,6 +5,8 @@ const nextConfig = {
   output: "standalone",
   env: {
     NEXT_PUBLIC_HOST: "http://localhost:3000",
+    DATABASE_URL:
+      "postgresql://postgres:postgres@localhost:5432/courierDB?schema=public",
   },
 };
 

@@ -12,7 +12,7 @@ const loginUser = async (req: NextApiRequest, res: NextApiResponse) => {
     if (loginUser) {
       res.status(200).json(loginUser);
     } else {
-      res.status(500).json({ error: "Invalid Credentials" });
+      res.status(404).json({ error: "Invalid Credentials" });
     }
   } catch (error: any) {
     res.status(500).json({ error: error.message });
