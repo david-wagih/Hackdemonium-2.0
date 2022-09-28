@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, Text, Button, Box } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
-import HeroImage from "../../public/Hero-image.png";
+import HeroImage from "../../public/Hero-Image.png";
 
 export default function hero() {
   return (
