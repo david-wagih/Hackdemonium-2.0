@@ -1,27 +1,43 @@
 import React from "react";
 import { Flex, Button, Text } from "@chakra-ui/react";
 
-export default function goalcard(title: any, friends: any) {
+const GoalCard = (props: { title: string; category: string; time: number }) => {
+  const { title, category, time } = props;
   return (
     <>
       <Flex
-        w={"267px"}
-        h={"65px"}
+        w={"200px"}
+        h={"150px"}
         borderRadius={"10px"}
         bgColor={"#F1BF3E"}
         justifyContent={"flex-start"}
         pl={"40px"}
         alignItems={"center"}
       >
-        <Flex flexDirection={"column"} alignItems={"flex-start"}>
-          <Text fontWeight={"500"} fontSize={"24px"}>
-            {/* {title} */}
+        <Flex flexDirection={"column"} justifyContent={"center"}>
+          <Text fontWeight={"500"} fontSize={"36px"}>
+            {title}
           </Text>
-          <Text>{/* {friends} */}</Text>
+          <Text
+            fontWeight={"500"}
+            fontSize={"18px"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            {category}
+          </Text>
+          <Text
+            fontWeight={"500"}
+            fontSize={"18px"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            {time} days
+          </Text>
         </Flex>
       </Flex>
     </>
   );
-}
+};
 
-// title: any, friends: any,
+export default GoalCard;

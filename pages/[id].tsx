@@ -38,7 +38,7 @@ export default function Profile(props: any) {
       {/*  */}
       <Flex justifyContent={"center"}>
         <Text fontWeight={"700"} fontSize={"48px"}>
-          Welcome, User
+          Welcome, {userData.username}
         </Text>
       </Flex>
       <Box

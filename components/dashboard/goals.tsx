@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Flex, Box, Button, Text, HStack } from "@chakra-ui/react";
-import Goalcard from "./goalcard";
+import { useCookies } from "react-cookie";
+import axios from "../../utils/axios";
+import GoalCard from "./goalcard";
 
-export default function goals() {
+export default function Goals() {
+  const [cookies, setCookie, removeCookie] = useCookies(["userId"]);
+  const [goals, setGoals] = React.useState([
+    {
+      id: 0,
+      title: "",
+      category: "",
+      time: 0,
+    },
+  ]);
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const res = await axios({
+          method: "GET",
+          url: "/api/getUser?id=" + cookies.userId,
+        });
+        setGoals(res.data.goals);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUserInfo();
+  });
+
   return (
     <>
       <Flex flexDirection={"column"} mt={"116px"} ml={"181px"}>
@@ -12,7 +39,14 @@ export default function goals() {
           </Text>
         </Box>
         <HStack>
-          <Goalcard />
+          {goals.map((goal) => (
+            <GoalCard
+              key={goal.id}
+              title={goal.title}
+              category={goal.category}
+              time={goal.time}
+            />
+          ))}
         </HStack>
       </Flex>
     </>
