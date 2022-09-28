@@ -39,14 +39,14 @@ export default function about() {
         <AccordionItem mb={"30px"}>
           <h2>
             <AccordionButton w={"420px"} fontWeight={"800"} fontSize={"30px"}>
-              <Box flex='1' textAlign='left'>
+              <Box flex="1" textAlign="left">
                 ## Inspiration
               </Box>
               <AccordionIcon />
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4} textAlign={"center"}>
-            As people who are working in jobs, school, or university we don't
+            As people who are working in jobs, school, or university we do not
             have alot of time that we put into ourselves. So we created a
             platform that allows anyone to create goals, track their progress,
             and get the motivation they need.
@@ -56,7 +56,7 @@ export default function about() {
         <AccordionItem mb={"30px"}>
           <h2>
             <AccordionButton w={"460px"} fontWeight={"800"} fontSize={"30px"}>
-              <Box flex='1' textAlign='left'>
+              <Box flex="1" textAlign="left">
                 ## What we learned
               </Box>
               <AccordionIcon />
@@ -75,7 +75,7 @@ export default function about() {
         <AccordionItem>
           <h2>
             <AccordionButton w={"420px"} fontWeight={"800"} fontSize={"30px"}>
-              <Box flex='1' textAlign='left'>
+              <Box flex="1" textAlign="left">
                 ## Challenges
               </Box>
               <AccordionIcon />
@@ -84,7 +84,7 @@ export default function about() {
           <AccordionPanel pb={4} textAlign={"center"}>
             We struggled with working with docker and prisma for the first time.
             We were also challenging ourselves with taking in input and
-            translating that into imediate data that's being displayed. Also
+            translating that into imediate data that is being displayed. Also
             using Courier API was a HUGE challenge for us.
           </AccordionPanel>
         </AccordionItem>
