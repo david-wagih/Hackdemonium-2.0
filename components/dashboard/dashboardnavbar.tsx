@@ -24,6 +24,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import useCookies from "react-cookie/cjs/useCookies";
+import axios from "../../utils/axios";
 
 export default function DashboardNavBar() {
   const [valueRadio, setValueRadio] = React.useState("1");
@@ -42,7 +43,32 @@ export default function DashboardNavBar() {
 
   const [value, setValue] = React.useState("");
   const handleChange = (event: any) => setValue(event.target.value);
+
   const [cookies, setCookie, removeCookie] = useCookies(["userId"]);
+
+  //  states for creating a goal
+  const [goalTitle, setGoalTitle] = React.useState("");
+  const [goalTime, setGoalTime] = React.useState("");
+  const [goalCategory, setGoalCategory] = React.useState("");
+
+  const handleCreatGoal = async () => {
+    try {
+      const res = await axios({
+        method: "POST",
+        url: "/api/createGoal",
+        data: {
+          userId: Number(cookies.userId),
+          title: goalTitle,
+          time: Number(input.value),
+          category: goalCategory,
+          notificationFrequency: valueRadio,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    onClose();
+  };
 
   const OverlayOne = () => (
     <ModalOverlay
@@ -111,10 +137,10 @@ export default function DashboardNavBar() {
                 alignItems={"center"}
               >
                 <Box>
-                  <Text>Title: {value}</Text>
+                  <Text>Title:</Text>
                   <Input
-                    value={value}
-                    onChange={handleChange}
+                    value={goalTitle}
+                    onChange={(e) => setGoalTitle(e.target.value)}
                     variant="flushed"
                     placeholder="Goal"
                   />
@@ -132,7 +158,12 @@ export default function DashboardNavBar() {
                     >
                       +
                     </Button>
-                    <Input {...input} />
+                    <Input
+                      {...input}
+                      value={goalTime}
+                      onChange={(e) => setGoalTime(e.target.value)}
+                      variant="flushed"
+                    />
                     <Button
                       bgColor={"primary"}
                       color={"black"}
@@ -147,12 +178,18 @@ export default function DashboardNavBar() {
                 </Box>
                 <Box>
                   <Text>Type of Goal</Text>
-                  <Select color={"orange"} placeholder="Category" w={"400"}>
-                    <option value="option1">Physical</option>
-                    <option value="option2">Mental</option>
-                    <option value="option3">Academic</option>
-                    <option value="option4">Financial</option>
-                    <option value="option5">Social</option>
+                  <Select
+                    color={"orange"}
+                    placeholder="Category"
+                    w={"400"}
+                    value={goalCategory}
+                    onChange={(e) => setGoalCategory(e.target.value)}
+                  >
+                    <option value="Physical">Physical</option>
+                    <option value="Mental">Mental</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Financial">Financial</option>
+                    <option value="Social">Social</option>
                   </Select>
                 </Box>
                 <RadioGroup
@@ -163,9 +200,9 @@ export default function DashboardNavBar() {
                 >
                   <Text>Notification Frequency</Text>
                   <Stack direction="row">
-                    <Radio value="1">Daily</Radio>
-                    <Radio value="2">Weekly</Radio>
-                    <Radio value="3">Bi-Weekly</Radio>
+                    <Radio value="Daily">Daily</Radio>
+                    <Radio value="Weekly">Weekly</Radio>
+                    <Radio value="Bi-Weekly">Bi-Weekly</Radio>
                   </Stack>
                 </RadioGroup>
               </ModalBody>
@@ -180,7 +217,7 @@ export default function DashboardNavBar() {
                     border: "1px solid white",
                     color: "white",
                   }}
-                  onClick={onClose}
+                  onClick={handleCreatGoal}
                   type={"submit"}
                 >
                   Create!
