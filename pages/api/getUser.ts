@@ -18,7 +18,7 @@ const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
         user_id: id,
       },
     });
-    const userFriends = await prisma.friends.findMany({
+    const userBadges = await prisma.friends.findMany({
       where: {
         user_id: id,
       },
@@ -31,7 +31,7 @@ const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
       username: userInfo!.username,
       email: userInfo!.email,
       phone: userInfo!.phone,
-      friends: userFriends,
+      badges: userBadges,
       goals: userGoals,
     };
     res.status(200).json(userModel);

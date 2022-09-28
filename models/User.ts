@@ -3,6 +3,6 @@ export type getUserModel = {
   username: string;
   email: string;
   phone: string;
-  friends: [] | any;
+  badges: [] | any;
   goals: [] | any;
 };
