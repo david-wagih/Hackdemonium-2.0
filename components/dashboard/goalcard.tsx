@@ -6,8 +6,8 @@ const GoalCard = (props: { title: string; category: string; time: number }) => {
   return (
     <>
       <Flex
-        w={"200px"}
-        h={"150px"}
+        w={"250px"}
+        h={"250px"}
         borderRadius={"10px"}
         bgColor={"#F1BF3E"}
         justifyContent={"flex-start"}
