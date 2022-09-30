@@ -13,7 +13,7 @@ const Home: NextPage = (props) => {
       <Hero />
       <Features />
       <About />
-      <Team />
+      {/* <Team /> */}
       <Footer />
     </>
   );
