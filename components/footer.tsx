@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function footer() {
   return (
     <>
+      {/* Increased footer image size */}
       <Flex w={"100%"} mb={"70px"} justifyContent={"center"}>
         <Link href={"/"}>
           <Image

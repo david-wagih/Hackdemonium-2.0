@@ -14,7 +14,7 @@ export default function NavBar() {
         <Link href={"/"}>
           <Image
             src={"/Logo.png"}
-            alt="logo"
+            alt='logo'
             width={"227px"}
             height={"41px"}
             className={"Logo"}
@@ -25,7 +25,7 @@ export default function NavBar() {
           {cookies.userId ? (
             <Link href={"/dashboard"}>
               <Text
-                className="underline"
+                className='underline'
                 fontWeight={"500"}
                 fontSize={"18px"}
                 cursor={"pointer"}
@@ -41,7 +41,7 @@ export default function NavBar() {
             <Text
               fontWeight={"500"}
               fontSize={"18px"}
-              className="underline"
+              className='underline'
               cursor={"pointer"}
             >
               Features
@@ -51,7 +51,7 @@ export default function NavBar() {
             <Text
               fontWeight={"500"}
               fontSize={"18px"}
-              className="underline"
+              className='underline'
               cursor={"pointer"}
             >
               About
@@ -61,7 +61,7 @@ export default function NavBar() {
             <Text
               fontWeight={"500"}
               fontSize={"18px"}
-              className="underline"
+              className='underline'
               cursor={"pointer"}
             >
               Team
@@ -94,7 +94,7 @@ export default function NavBar() {
             >
               <Link href={"/login"}>
                 <Button
-                  bg={"#F2F2F2"}
+                  bg={"transparent"}
                   color={"#000000"}
                   fontWeight={"500"}
                   fontSize={"18px"}
@@ -107,7 +107,7 @@ export default function NavBar() {
               </Link>
               <Link href={"/sign"}>
                 <Button
-                  bg={"#F2F2F2"}
+                  bg={"transparent"}
                   color={"#000000"}
                   fontWeight={"500"}
                   fontSize={"18px"}
