@@ -6,7 +6,9 @@ import theme from "../styles/theme";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
+      {/* Add Header */}
       <Component {...pageProps} />
+      {/* Add footer */}
     </ChakraProvider>
   );
 }
