@@ -9,7 +9,7 @@ declare global {
 }
 
 let prisma: PrismaClient;
-
+// PRisma client is a singleton
 if (typeof window === "undefined") {
   if (process.env.NODE_ENV === "production") {
     prisma = new PrismaClient();

@@ -10,6 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// This is your Prisma schema file,
+
 model User {
   id       Int     @id @default(autoincrement())
   email    String  @unique
@@ -20,14 +22,16 @@ model User {
   Badge    Badge[]
 }
 
+// A goal is a task that a user wants to accomplish
+
 model Goal {
-  id       Int    @id @default(autoincrement())
-  title    String
-  category String
-  time     Int
+  id                    Int    @id @default(autoincrement())
+  title                 String
+  category              String
+  time                  Int
   notificationFrequency String
-  user_id  Int
-  user     User   @relation(fields: [user_id], references: [id])
+  user_id               Int
+  user                  User   @relation(fields: [user_id], references: [id])
 }
 
 model Badge {
