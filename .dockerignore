@@ -1,6 +1,8 @@
-DockerFile
-.dockerignore
-node_modules
-npm-debug.log
-README.md
-.next
+DockerFile.dockerignore;
+node_modules;
+npm - debug.log;
+README.md.next;
+
+// Language: javascript
+// Path: DockerFile
+// Compare this snippet from /DockerFile:

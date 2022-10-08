@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// Next.js configuration
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -8,4 +9,5 @@ const nextConfig = {
   },
 };
 
+// Compare this snippet from /DockerFile:
 module.exports = nextConfig;

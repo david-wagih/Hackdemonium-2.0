@@ -55,3 +55,6 @@ EXPOSE 3000
 ENV PORT 3000
 
 CMD ["node", "server.js"]
+
+# If using npm comment out above and use below instead
+# CMD ["npm", "start"]
