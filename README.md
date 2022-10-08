@@ -1,6 +1,6 @@
 # Inspiration
 
-Not only are we developers but human beings who go to school and universities have emotions like happiness, sadness, and influencing factors like motivation. Motivation is a key aspect in life in getting your best foot forward and succeeding in life. Goalden strives to accomplish that. Research shows that almost more than 42% of people are more committed, successful, and motivated by creating goals and another study proved that people work much better through a competing mindset. Many people during the pandemic didn't have anything to do and most people don't realize they can set themselves goals and proceed that way. Goalden is solving that problem.
+Not only are we developers but human beings who go to school and universities have emotions like happiness, sadness, and influencing factors like motivation. Motivation is a key aspect in life in getting your best foot forward and succeeding in life. Goalden strives to accomplish that. Research shows that almost more than 42% of people are more committed, successful, and motivated by creating goals and another study proved that people work much better through a competing mindset. Many people during the pandemic didn't have anything to do and most people don't realize they can set themselves goals and proceed that way. Goalden is solving that problem. We love creating and putting smiles on peoples faces
 
 ## What it does
 
